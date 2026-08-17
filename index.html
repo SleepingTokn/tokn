@@ -15,6 +15,15 @@
   --warn:linear-gradient(135deg,#ffb020,#ff7a45);
   --dang:linear-gradient(135deg,#ff5d73,#ff2f4f);
 }
+body[data-theme="light"]{
+  --bg:#f4f6fb; --bg2:rgba(255,255,255,.7); --panel:rgba(255,255,255,.75); --panel2:rgba(20,30,60,.04);
+  --line:rgba(20,30,60,.12); --txt:#101527; --muted:#55627f; --dim:#8892ab;
+  --green:#0ca678; --red:#e0314f; --amber:#e8890c; --blue:#1c7ed6; --purple:#7048e8;
+}
+body[data-theme="light"] .orb{opacity:.25}
+body[data-theme="light"] .grid-overlay{opacity:.2}
+body[data-theme="light"] .card,body[data-theme="light"] .glass{box-shadow:0 8px 30px rgba(20,30,60,.08)}
+body[data-theme="light"] .stat::after{background:radial-gradient(circle,rgba(124,92,255,.15),transparent 70%)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
@@ -58,6 +67,14 @@ body{
 .up{color:var(--green)} .down{color:var(--red)}
 
 .card{background:var(--bg);border:1px solid var(--line);border-radius:20px;backdrop-filter:blur(18px);overflow:hidden}
+.radar-hero{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 24px;margin-bottom:16px;backdrop-filter:blur(14px);position:relative;overflow:hidden}
+.radar-hero::after{content:"";position:absolute;top:-40px;right:-40px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(15,211,255,.18),transparent 70%)}
+.radar-hero h2{font-size:20px;font-weight:800;line-height:1.3;max-width:620px}
+.radar-hero p{color:var(--muted);font-size:13.5px;line-height:1.65;margin-top:8px;max-width:720px}
+.radar-hero p .dim{color:var(--dim);font-style:italic}
+.rh-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:6px 12px;font-size:12px;color:var(--muted)}
+.hero-chip b{color:var(--txt)} .hero-chip b.up{color:var(--green)} .hero-chip b.dng{color:var(--red)}
 table{width:100%;border-collapse:collapse;font-size:13.5px}
 thead th{text-align:left;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.7px;padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;cursor:pointer;white-space:nowrap;user-select:none}
 thead th.sorted{color:var(--blue)}
@@ -97,6 +114,9 @@ tbody tr.clickable:hover{background:rgba(255,255,255,.04)}
 .chgrid .cc .v{font-size:12.5px;font-weight:800}
 .tname{font-weight:700;font-size:14px}
 .taddr{color:var(--dim);font-size:11px;font-family:'JetBrains Mono',ui-monospace,Consolas,monospace}
+.dex-chip{display:inline-block;vertical-align:middle;font-size:11px;font-weight:700;color:var(--blue);background:rgba(93,182,255,.12);border:1px solid rgba(93,182,255,.35);border-radius:20px;padding:3px 9px;margin-left:8px;text-transform:capitalize}
+.theme-btn{background:var(--panel);border:1px solid var(--line);color:var(--muted);width:38px;height:38px;border-radius:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:.2s}
+.theme-btn:hover{color:var(--txt);border-color:var(--blue)}
 .tag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;letter-spacing:.3px;display:inline-block;vertical-align:middle}
 .tag.new{background:rgba(255,61,90,.16);color:#ff8ea0}
 .tag.hot{background:rgba(255,176,32,.16);color:#ffcf7a}
@@ -228,11 +248,18 @@ tbody tr.clickable:hover{background:rgba(255,255,255,.04)}
   .navtabs{margin-left:0;width:100%;justify-content:space-between;overflow-x:auto}
   .two-col{grid-template-columns:1fr}
   .brand b{font-size:16px}
-  .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:rgba(10,13,24,.9);border-top:1px solid var(--line);z-index:40;justify-content:space-around;padding:8px 4px calc(8px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}
-  .bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9.5px;font-weight:600;padding:6px 12px;border-radius:10px;cursor:pointer;background:none;border:none}
-  .bottom-nav button svg{width:18px;height:18px}
+  .radar-hero{padding:18px 18px}
+  .radar-hero h2{font-size:17px}
+  .bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:rgba(10,13,24,.9);border-top:1px solid var(--line);z-index:40;justify-content:space-around;padding:6px 2px calc(6px + env(safe-area-inset-bottom));backdrop-filter:blur(16px)}
+  .bottom-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--muted);font-size:9.5px;font-weight:600;padding:8px 14px;border-radius:10px;cursor:pointer;background:none;border:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+  .bottom-nav button svg{width:20px;height:20px}
   .bottom-nav button.active{color:var(--txt)}
+  .theme-btn{width:40px;height:40px}
+  .watch-badge{width:40px;height:40px}
+  .btn{min-height:44px}
+  table{font-size:12px}
 }
+body[data-theme="light"] .bottom-nav{background:rgba(250,251,254,.92)}
 </style>
 </head>
 <body>
@@ -258,6 +285,7 @@ tbody tr.clickable:hover{background:rgba(255,255,255,.04)}
       <button data-view="pricing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 9v12"/></svg>Pro</button>
     </div>
     <span class="live-badge"><span class="live-dot"></span><span id="liveState">LIVE</span></span>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
   </div>
 
   <div class="pagehead" id="pagehead"></div>
@@ -349,6 +377,7 @@ var FEED=[];                      /* live pump.fun tokens */
 var SEEN={};                      /* addresses already seen -> detect new launches */
 var newLaunches=[];              /* recent auto-detected launches */
 var launchConf={enabled:true,minMC:0}; /* auto-detect rules: only track tokens above min market cap */
+var notifyEnabled=false;              /* browser push notifications for new launches */
 var lastUpdated=Date.now();
 var alerts=[
  {id:1,ic:'dang',icon:'📉',label:'Market cap drops below $500K'},
@@ -371,6 +400,14 @@ function riskColor(r){return r<35?'var(--green)':r<65?'var(--amber)':'var(--red)
 function riskPill(l){return l==='low'?'<span class="riskpill risk-low">● LOW</span>':l==='high'?'<span class="riskpill risk-high">● HIGH</span>':'<span class="riskpill risk-med">● MED</span>'}
 function riskLvl(r){return r<35?'low':r<65?'med':'high'}
 function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('show')},2300)}
+function toggleTheme(){
+  var b=document.body,cur=b.getAttribute('data-theme')==='light';
+  if(cur){b.removeAttribute('data-theme');try{localStorage.removeItem('tokn-theme')}catch(e){}}
+  else{b.setAttribute('data-theme','light');try{localStorage.setItem('tokn-theme','light')}catch(e){}}
+  updateThemeBtn();
+}
+function updateThemeBtn(){var b=document.body,el=$('#themeBtn');if(el)el.textContent=b.getAttribute('data-theme')==='light'?'☀️':'🌙'}
+(function(){try{if(localStorage.getItem('tokn-theme')==='light'){document.body.setAttribute('data-theme','light');updateThemeBtn()}}catch(e){}})();
 function openModal(h){$('#modalCard').innerHTML=h;$('#modal').classList.add('open')}
 function closeModal(){$('#modal').classList.remove('open')}
 function spark(hist){return '<div class="spark">'+(hist||[30,40,50,40,60]).map(function(v){return '<i style="height:'+Math.max(16,Math.min(100,v))+'%"></i>'}).join('')+'</div>'}
@@ -451,7 +488,8 @@ function fetchFeed(){
           var web=info.websites||p.websites||[];
           var soc=info.socials||p.twitter||[];
           var banner=(typeof p.header==='string'&&p.header)||(typeof info.banner==='string'&&info.banner)||((info.header&&info.header.imageUrl)||'')||'';
-          return {sym:sym,name:sym,address:p.tokenAddress,logo:logo,desc:desc,web:web,soc:soc,ch24:ch24,ch1:ch1,ch6:ch6,banner:banner,mc:best.marketCap||0,liq:(best.liquidity||{}).usd||0,vol:(best.volume||{}).h24||0,price:best.priceUsd,buys:((best.txns||{}).h24||{}).buys||0,sells:((best.txns||{}).h24||{}).sells||0,created:best.pairCreatedAt||Date.now(),isLive:true};
+          var ch5=(best.priceChange&&best.priceChange.m5)||0;
+          return {sym:sym,name:sym,address:p.tokenAddress,logo:logo,desc:desc,web:web,soc:soc,ch24:ch24,ch1:ch1,ch6:ch6,ch5:ch5,banner:banner,mc:best.marketCap||0,liq:(best.liquidity||{}).usd||0,liqUsd:(best.liquidity||{}).usd||0,vol:(best.volume||{}).h24||0,price:best.priceUsd,buys:((best.txns||{}).h24||{}).buys||0,sells:((best.txns||{}).h24||{}).sells||0,created:best.pairCreatedAt||Date.now(),dex:(best.dexId||''),pair:(best.pairAddress||''),isLive:true};
         }).catch(function(){return null});
       });
       return Promise.all(jobs);
@@ -472,6 +510,7 @@ function fetchFeed(){
         newLaunches.unshift({sym:t.sym,addr:t.address,mc:t.mc,at:Date.now()});
         if(newLaunches.length>8)newLaunches.pop();
         toast('🔔 New launch $'+t.sym+' — added to Watchlist');
+        try{if(typeof Notification!=='undefined'&&Notification.permission==='granted'&&notifyEnabled){new Notification('🚀 New launch: $'+t.sym,{body:'MC '+money(t.mc)+' · auto-added to Watchlist'})}}catch(e){}
       });
       lastUpdated=Date.now();
       $('#liveState').textContent='LIVE · '+FEED.length+' new'+(found.length?' · +'+found.length:'')+' detected';
@@ -494,9 +533,10 @@ function refreshMajors(){
     var web=info.websites||s.web||[];
     var soc=info.socials||s.soc||[];
     var banner=(typeof info.banner==='string'&&info.banner)||((info.header&&info.header.imageUrl)||'')||s.banner||'';
-    return {sym:s.sym,logo:logo,desc:desc,web:web,soc:soc,ch24:ch24,ch1:ch1,ch6:ch6,banner:banner,mc:best.marketCap||s.mc,liq:(best.liquidity||{}).usd||s.liq,vol:(best.volume||{}).h24||s.vol,price:best.priceUsd,buys:((best.txns||{}).h24||{}).buys||s.buys,sells:((best.txns||{}).h24||{}).sells||s.sells,created:best.pairCreatedAt||s.created};
+    var ch5=(best.priceChange&&best.priceChange.m5)||s.ch5||0;
+    return {sym:s.sym,logo:logo,desc:desc,web:web,soc:soc,ch24:ch24,ch1:ch1,ch6:ch6,ch5:ch5,banner:banner,mc:best.marketCap||s.mc,liq:(best.liquidity||{}).usd||s.liq,liqUsd:(best.liquidity||{}).usd||s.liq,vol:(best.volume||{}).h24||s.vol,price:best.priceUsd,buys:((best.txns||{}).h24||{}).buys||s.buys,sells:((best.txns||{}).h24||{}).sells||s.sells,created:best.pairCreatedAt||s.created,dex:(best.dexId||s.dex||''),pair:(best.pairAddress||s.pair||'')};
   }).catch(function(){return null})});
-  Promise.all(jobs).then(function(rs){rs.forEach(function(r,i){if(r){SEED[i].mc=r.mc;SEED[i].liq=r.liq;SEED[i].vol=r.vol;SEED[i].price=r.price;SEED[i].buys=r.buys;SEED[i].sells=r.sells;SEED[i].created=r.created;if(r.logo)SEED[i].logo=r.logo;if(r.ch24!==undefined)SEED[i].ch24=r.ch24;if(r.ch1!==undefined)SEED[i].ch1=r.ch1;if(r.ch6!==undefined)SEED[i].ch6=r.ch6;if(r.banner)SEED[i].banner=r.banner;if(r.desc)SEED[i].desc=r.desc;if(r.web)SEED[i].web=r.web;if(r.soc)SEED[i].soc=r.soc;if(r.price>0)recHist(r.sym,r.price)}});if(view==='radar'&&feedMode==='majors')render();});
+  Promise.all(jobs).then(function(rs){rs.forEach(function(r,i){if(r){SEED[i].mc=r.mc;SEED[i].liq=r.liq;SEED[i].liqUsd=r.liqUsd;SEED[i].vol=r.vol;SEED[i].price=r.price;SEED[i].buys=r.buys;SEED[i].sells=r.sells;SEED[i].created=r.created;SEED[i].dex=r.dex||SEED[i].dex;SEED[i].pair=r.pair||SEED[i].pair;if(r.logo)SEED[i].logo=r.logo;if(r.ch24!==undefined)SEED[i].ch24=r.ch24;if(r.ch1!==undefined)SEED[i].ch1=r.ch1;if(r.ch6!==undefined)SEED[i].ch6=r.ch6;if(r.ch5!==undefined)SEED[i].ch5=r.ch5;if(r.banner)SEED[i].banner=r.banner;if(r.desc)SEED[i].desc=r.desc;if(r.web)SEED[i].web=r.web;if(r.soc)SEED[i].soc=r.soc;if(r.price>0)recHist(r.sym,r.price)}});if(view==='radar'&&feedMode==='majors')render();});
 }
 function fetchLive(){fetchFeed();refreshMajors()}
 
@@ -525,9 +565,10 @@ function radarHTML(){
     var rows=list.map(function(x){return rowHTML(x)}).join('');
     body='<div style="overflow-x:auto"><table><thead><tr><th></th>'+th('mc','Market Cap')+th('price','Price')+'<th>Chart</th>'+th('vol','24h Vol')+th('created','Age')+th('momentum','Momentum')+th('risk','Risk')+th('opp','Opp.')+'<th>Audit / LP</th>'+th('growth','Holders/hr')+'<th></th></tr></thead><tbody>'+(rows||'<tr><td colspan="12"><div class="empty">No tokens match this filter.</div></td></tr>')+'</tbody></table></div>';
   }
-  return '<div class="card"><div class="filters" style="display:flex;gap:8px;padding:14px 18px;flex-wrap:wrap;align-items:center">'+pills+'<span style="width:1px;height:22px;background:var(--line);margin:0 4px"></span>'+ph+'<span class="spacer"></span><span class="auto-refresh">↻ auto 25s</span></div>'+body+'</div>';
+  var hero='<div class="radar-hero"><div class="rh-l"><h2>Find Solana meme coins early — and understand the risk.</h2><p>Tokn scans <b>pump.fun</b> in real time and scores every token on two separate dimensions: <b class="up">Opportunity</b> (how early the move is) and <b>Risk</b> (how dangerous the setup is). A coin can be high-opportunity <i>and</i> high-risk at once — we show you both, not a fake BUY/SELL signal. <span class="dim">Automated estimates, not financial advice.</span></p><div class="rh-chips"><span class="hero-chip"><b class="up">OPP.</b> how early</span><span class="hero-chip"><b class="dng">RISK</b> how dangerous</span><span class="hero-chip"><b>🛡️</b> audit · LP</span><span class="hero-chip"><b>🔔</b> auto-track</span></div></div></div>';
+  return hero+'<div class="card"><div class="filters" style="display:flex;gap:8px;padding:14px 18px;flex-wrap:wrap;align-items:center">'+pills+'<span style="width:1px;height:22px;background:var(--line);margin:0 4px"></span>'+ph+'<span class="spacer"></span><span class="auto-refresh">↻ auto 25s</span></div>'+body+'</div>';
 }
-function rowHTML(x){
+function rowHTML(x){ 
   var t=x.t,sc=x.s,pa=palateFor(t.address||t.sym);
   var tag=isNew(t,sc)?'<span class="tag new">NEW</span>':sc.momentum>=70?'<span class="tag hot">HOT</span>':'<span class="tag steady">LIVE</span>';
   var g=growthRate(t);
@@ -587,7 +628,7 @@ function openToken(sym){
   openModal('<button class="modal-x" onclick="closeModal()">×</button>'
     +(t.banner?'<div class="tbanner"><img src="'+esc(t.banner)+'" alt="" onerror="this.style.display=\'none\'"></div>':'')
     +'<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">'+iconHTML(t,56,dexLink)
-    +'<div><div style="font-size:22px;font-weight:800">$'+esc(t.sym)+' <span class="tag '+ (isNew(t,sc)?'new':'steady') +'">'+ (isNew(t,sc)?'NEW':'LIVE') +'</span></div><div class="taddr">'+esc(t.address)+'</div><div style="color:var(--muted);font-size:12px;margin-top:2px">'+esc(t.name||t.sym)+' · '+ageFmt(t.created)+' old</div></div>'
+    +'<div><div style="font-size:22px;font-weight:800">$'+esc(t.sym)+' <span class="tag '+ (isNew(t,sc)?'new':'steady') +'">'+ (isNew(t,sc)?'NEW':'LIVE') +'</span>'+(t.dex?' <span class="dex-chip">'+esc(t.dex)+'</span>':'')+'</div><div class="taddr">'+esc(t.address)+'</div><div style="color:var(--muted);font-size:12px;margin-top:2px">'+esc(t.name||t.sym)+' · '+ageFmt(t.created)+' old'+(t.pair?' · <a href="https://dexscreener.com/solana/'+esc(t.pair)+'" target="_blank" rel="noopener" style="color:var(--blue)">Pair ↗</a>':'')+'</div></div>'
     +bigChartHTML(t.sym)
     +'<div style="margin-left:auto;display:flex;gap:14px"><div class="score-big" style="background:'+ringColor(sc.opp)+'"><b>'+sc.opp+'</b><span>OPP.</span></div><div class="score-big" style="background:'+riskColor(sc.risk)+'"><b>'+sc.risk+'</b><span>RISK</span></div></div></div>'
     +'<div class="stat-grid" style="margin-top:20px">'
@@ -606,8 +647,8 @@ function openToken(sym){
     +'<div style="display:flex;gap:10px;margin-top:16px"><button class="btn" onclick="toggleWatch(\''+t.sym.replace(/'/g,'')+'\')">'+(watchlist.indexOf(t.sym)>=0?'★ In Watchlist':'☆ Add to Watchlist')+'</button><button class="btn primary" onclick="toast(\'🔔 Alert set for $'+esc(t.sym)+'\')">Set Alert</button></div>');
 }
 function priceChangeHTML(t){
-  if(t.ch1===undefined&&t.ch6===undefined&&t.ch24===undefined)return '';
-  return '<div class="chgrid">'+changeCell('1H',t.ch1)+changeCell('6H',t.ch6)+changeCell('24H',t.ch24)+'</div>';
+  if(t.ch1===undefined&&t.ch6===undefined&&t.ch24===undefined&&t.ch5===undefined)return '';
+  return '<div class="chgrid">'+changeCell('5m',t.ch5)+changeCell('1H',t.ch1)+changeCell('6H',t.ch6)+changeCell('24H',t.ch24)+'</div>';
 }
 function changeCell(k,v){v=Number(v)||0;var up=v>=0;return '<div class="cc"><div class="k">'+k+'</div><div class="v" style="color:'+(up?'var(--green)':'var(--red)')+'">'+(v>0?'+':'')+v.toFixed(2)+'%</div></div>'}
 /* 24h range boxes in the top stat grid — computed from live session history + real 24h change */
@@ -750,7 +791,8 @@ function alertsHTML(){
   return '<div class="card"><div class="pagehead" style="padding:20px"><h3 style="font-size:16px">🚨 Custom alerts</h3></div>'+list+'<div style="padding:16px 20px"><button class="btn" onclick="toast(\'Alert builder (Pro)\')">＋ New rule</button></div></div>'
     +'<div class="card" style="margin-top:14px;padding:20px"><h3 style="font-size:14px;margin-bottom:12px">🤖 Auto-track new launches</h3>'
     +'<div class="rule"><div class="alert-ic b">🎯</div><b style="flex:1">Auto-add fresh pump.fun launches to Watchlist</b><label class="switch"><input type="checkbox" '+(launchConf.enabled?'checked':'')+' onchange="setLaunchEnabled(this.checked)"><span class="slid"></span></label></div>'
-    +'<div class="launch-conf"><label>Minimum market cap</label><select onchange="setLaunchMinMC(this.value)" style="background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:7px 10px;font-size:13px">'+opts+'</select></div></div>'
+    +'<div class="launch-conf"><label>Minimum market cap</label><select onchange="setLaunchMinMC(this.value)" style="background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:9px;padding:7px 10px;font-size:13px">'+opts+'</select></div>'
+    +'<div class="rule" style="margin-top:12px"><div class="alert-ic b">🔔</div><b style="flex:1">Browser notifications for new launches</b><label class="switch"><input type="checkbox" '+(notifyEnabled?'checked':'')+' onchange="toggleNotify(this.checked)"><span class="slid"></span></label></div></div>'
     +'<div class="card" style="margin-top:14px;padding:20px"><h3 style="font-size:14px;margin-bottom:10px">📱 Push preview</h3>'
     +'<div style="background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px"><div style="font-weight:800;color:var(--amber)">🔥 NEW RADAR ALERT</div><div style="color:var(--muted);font-size:13px;margin-top:6px">$PUMP · MC $84K · Momentum 91 · Risk 28 · Smart wallets 3<br><b style="color:var(--amber)">Reason:</b> New launch, rapid holder growth + volume.</div></div></div>'
     +'<div class="card" style="margin-top:14px;padding:20px"><h3 style="font-size:14px;margin-bottom:10px">🎯 Auto-detected launches</h3>'+det+'</div>';
@@ -758,6 +800,19 @@ function alertsHTML(){
 function toggleAlert(id,on){enabled[id]=on;toast(on?'Alert enabled':'Alert disabled')}
 function setLaunchEnabled(on){launchConf.enabled=on;toast(on?'Auto-track enabled':'Auto-track disabled')}
 function setLaunchMinMC(v){launchConf.minMC=+v||0;toast('Launch MC threshold set')}
+function toggleNotify(on){
+  if(on){
+    if(typeof Notification==='undefined'){toast('Notifications not supported here');return}
+    if(Notification.permission==='default'){
+      Notification.requestPermission().then(function(p){notifyEnabled=(p==='granted');toast(notifyEnabled?'🔔 Notifications enabled':'Notifications blocked')}).catch(function(){toast('Could not enable notifications')});
+    }else if(Notification.permission==='granted'){
+      notifyEnabled=true;toast('🔔 Notifications enabled');
+    }else{
+      notifyEnabled=false;toast('⚠️ Blocked in browser settings — enable site notifications');
+    }
+  }else{notifyEnabled=false;toast('Notifications disabled')}
+  render();
+}
 
 /* ==================== WATCHLIST ==================== */
 function wlSortVal(t,c){if(c==='growth')return growthRate(t);if(c==='audit'){var a=auditSig(t);return (a.audited?1:0)+(a.lpLocked?1:0)}return t[c]||0}
